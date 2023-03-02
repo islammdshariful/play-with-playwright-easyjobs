@@ -53,6 +53,10 @@ To run tests, use the following command:
 ```sh
 npx playwright test
 ```
+To run only in chrome browser, use the follwing commnad:
+```sh
+npm run onchrome  
+```
 This will run all tests located in the `tests` directory.
 
 ### Generating Reports
