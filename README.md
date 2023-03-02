@@ -1,6 +1,8 @@
 # Playwright Test Automation Framework ([easy.jobs](https://app.easy.jobs))
 This is a Playwright-based test automation framework written in JavaScript, designed to simplify browser testing. It includes reusable utilities, supports multi-browser testing, and generates reports. It uses Page Object Model for maintainability and flexibility.
 
+_Note: This project is currently ongoing, and we plan to add more test cases in the near future._
+
 ## Getting Started
 
 ### Prerequisites
