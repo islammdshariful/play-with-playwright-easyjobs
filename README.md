@@ -15,7 +15,7 @@ _Note: This project is currently ongoing, and plan to add more test cases in the
 npm install
 ```
 3. To create credentials and a token for Gmail, please refer to the [documentation](https://www.npmjs.com/package/gmail-tester) for Gmail Tester. Once you have created these, place them in the following directories: `utils/mails/gmail-credentials.json` and `utils/mails/gmail-token.json`.
-4. create a `credentials.js` file in `utils/credentials.js`.
+4. Create a `credentials.js` file in `utils/credentials.js`.
 ```sh
 export const  users = () =>  {
     let users = {
@@ -34,7 +34,7 @@ export const  users = () =>  {
     }
 }
 ```
-5. set your company name in `utils/data/company.js`
+5. Set your company name in `utils/data/company.js`
 ```sh
 export const  companies = () =>  {
     let company = {
