@@ -34,9 +34,6 @@ const readMails = async(subject, from, expectedMessage) => {
   const emailBodyHtml = emails[0].body.html //get body
   const actualMessage = getBodyText(emailBodyHtml)
   expect.soft(actualMessage.replace(/\s+/g, ' ').trim()).toEqual(expectedMessage)
-  console.log(actualMessage.replace(/\s+/g, ' ').trim())
 }
-
-
 
 export {readMails}

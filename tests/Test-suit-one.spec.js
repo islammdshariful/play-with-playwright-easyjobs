@@ -27,16 +27,16 @@ test('Login to account', async () => {
     await loginPage.validLogin(user)
 });
 
-// test('Create Question Set', async () => {
-//     const leftMenu = pomanager.getLeftMenu();
-//     await leftMenu.goToEvaluation();
-//     await leftMenu.goToQuestionSet();
-//     const questionSet = pomanager.getQuestionSet();
-//     let qSet = questionsSets();
-//     let ques = questions();
-//     await questionSet.addQuestionSet(qSet.sets.screening.one, ques.screening.question1)
-//     await questionSet.addQuestionSet(qSet.sets.quiz.one, ques.quiz.question1)
-// });
+test('Create Question Set', async () => {
+    const leftMenu = pomanager.getLeftMenu();
+    await leftMenu.goToEvaluation();
+    await leftMenu.goToQuestionSet();
+    const questionSet = pomanager.getQuestionSet();
+    let qSet = questionsSets();
+    let ques = questions();
+    await questionSet.addQuestionSet(qSet.sets.screening.one, ques.screening.question1)
+    await questionSet.addQuestionSet(qSet.sets.quiz.one, ques.quiz.question1)
+});
 
 test('Create a job', async () => {
     const leftMenu = pomanager.getLeftMenu();

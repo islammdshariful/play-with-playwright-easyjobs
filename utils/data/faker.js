@@ -4,8 +4,8 @@ import { faker } from '@faker-js/faker/locale/en_US';
 export const  newUser = () =>  {
     let first_name = faker.name.firstName()
     let last_name = faker.name.lastName()
-    let email = 'testerbhaai+1@gmail.com'
-    let password = '12345678'
+    let email = '[your@email.com]]'
+    let password = '[yourpassword]'
 
     return {
         first_name,
