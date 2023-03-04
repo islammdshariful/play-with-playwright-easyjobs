@@ -1,6 +1,10 @@
 import { questionsSets, questions } from './questions';
 
 export const  jobs = () =>  {
+    const date = new Date();
+    date.setMonth(date.getMonth() + 1);
+    const expiryMonth = date.toLocaleString('default', { month: 'short' });
+    const expiryYear = date.getFullYear();
     const qSets = questionsSets()
     let jobs = {
         job1 : {
@@ -15,8 +19,8 @@ export const  jobs = () =>  {
                 state : 'Dhaka',
                 city : 'Mirpur DOHS',
                 expiryDate : {
-                    year : '2023',
-                    month : 'Apr',
+                    year : expiryYear,
+                    month : expiryMonth,
                     date : '28'
                 },
                 skills : {
@@ -62,8 +66,8 @@ export const  jobs = () =>  {
                 state : 'Dhaka',
                 city : 'Mirpur DOHS',
                 expiryDate : {
-                    year : '2023',
-                    month : 'Apr',
+                    year : expiryYear,
+                    month : expiryMonth,
                     date : '28'
                 },
                 skills : {
