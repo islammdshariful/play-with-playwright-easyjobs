@@ -1,4 +1,5 @@
 import { expect } from '@playwright/test';
+import { LeftMenu } from './Menu';
 const { Helper, getMonthAsNumber } = require("../utils/helper");
 const { ToastMessage, PopUp } = require("./PopUp");
 
@@ -194,6 +195,8 @@ class Apply {
         this.helper = new Helper(page)
 
         this.popup = new PopUp(page)
+
+        this.leftMenu = new LeftMenu(page)
     }
 
     async goTo(url) {
@@ -277,7 +280,7 @@ class Apply {
         await this.phoneNumber.fill('');
         await this.phoneNumber.fill(basicInfo.phoneNumber);
         var nationalityCheck = await this.nationality.textContent()
-        if ((nationalityCheck.replace(/\s+/g, ' ').trim()) != basicInfo.nationality){
+        if ((nationalityCheck.replace(/\s+/g, ' ').trim()) != basicInfo.nationality) {
             await this.nationality.click();
             await this.nationalityFiled.fill(basicInfo.nationality);
             await this.page.locator(`text='${basicInfo.nationality}'`, { timeout: 5000 }).click();
@@ -326,7 +329,7 @@ class Apply {
         for (var i = 0; i < Object.keys(question).length; i++) {
             if (question[i].type == 'Multiple Choice') {
                 multipleChoiceCount += 1;
-                for ( var j = 0; j < Object.keys(question[i].correct).length; j++){
+                for (var j = 0; j < Object.keys(question[i].correct).length; j++) {
                     if (question[i].correct[j] == 0) {
                         await this.page.locator(`//li[@class='list-item']/div[2]/div[1]/label`).nth(multipleChoiceCount).click();
                     } else {
@@ -343,7 +346,7 @@ class Apply {
     async doQuiz(question) {
         await this.startQuiz.click();
         for (var i = 0; i < Object.keys(question).length; i++) {
-            for (var j = 0; j < Object.keys(question[i].correct).length; j++){
+            for (var j = 0; j < Object.keys(question[i].correct).length; j++) {
                 if (question[i].correct[j] == 0) {
                     await this.page.locator(`//div[@class='question-answer-body']/div[2]/div[1]/label`).click();
                 } else {
@@ -455,10 +458,10 @@ class Apply {
         var correctAnswers = []
         for (var i = 0; i < Object.keys(question).length; i++) {
             await expect.soft(this.page.locator(`${this.previewScreeningQuestions}/li[${[i + 1]}]/p[1]`)).toHaveText(`Screening Question ${[i + 1]}`)
-           
+
             var questionAnswer = await (this.page.locator(`${this.previewScreeningQuestions}/li[${[i + 1]}]/p[2]`)).textContent();
             await expect.soft(questionAnswer.replace(/\s+/g, ' ').trim()).toEqual(`Question: ${question[i].name}`)
-            
+
             if (question[i].type == 'Text') {
                 correctAnswers.push(question[i].answer);
             } else {
@@ -470,7 +473,7 @@ class Apply {
 
         for (var k = 0; k < correctAnswers.length; k++) {
             var questionAnswer = await (this.page.locator(`${this.previewScreeningQuestions}/li[${[k + 1]}]/p[3]`)).textContent();
-            
+
             if (question[k].type == 'Text') {
                 await expect.soft(questionAnswer.replace(/\s+/g, ' ').trim()).toEqual(`Answer: ${correctAnswers[k]}`)
             } else {
@@ -511,9 +514,11 @@ class Apply {
         await this.seeAppliedJob.click()
 
         await expect(this.page).toHaveTitle("easy.jobs | Dashboard", { timeout: 5000 })
+
+        await this.leftMenu.doLogout()
     }
 
-    async submitApplication(){
+    async submitApplication() {
         await this.submitJobApplication.click()
     }
 

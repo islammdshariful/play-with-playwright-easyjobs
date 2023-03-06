@@ -1,85 +1,89 @@
-class LeftMenu{
-    constructor(page){
+class LeftMenu {
+    constructor(page) {
         this.page = page;
-        this.dashboard= page.locator("text=Dashboard");
-        this.jobs= page.locator("text=Jobs").nth(0);
-        this.candidates= page.locator("text=Candidates");
-        this.messages= page.locator("text=Messages");
-        this.settings= page.locator("text=Settings");
-        this.evaluation= page.locator("text=Evaluation");
-        this.questionSet= page.locator("text=Question Set");
-        this.assessment= page.locator("text=Assessment");
+        this.dashboard = page.locator("text=Dashboard");
+        this.jobs = page.locator("text=Jobs").nth(0);
+        this.candidates = page.locator("text=Candidates");
+        this.messages = page.locator("text=Messages");
+        this.settings = page.locator("text=Settings");
+        this.evaluation = page.locator("text=Evaluation");
+        this.questionSet = page.locator("text=Question Set");
+        this.assessment = page.locator("text=Assessment");
+        this.logout = page.locator('[href="/logout"]').nth(0)
+    }
+    async doLogout() {
+        await this.logout.click();
     }
 
-    async goToDashboard (){
+    async goToDashboard() {
         await this.dashboard.click();
     }
-    async goToJobs (){
+    async goToJobs() {
         await this.jobs.click();
     }
-    async goToCandidates (){
+    async goToCandidates() {
         await this.candidates.click();
     }
-    async goToSettings (){
+    async goToSettings() {
         await this.settings.click();
     }
-    async goToEvaluation (){
+    async goToEvaluation() {
         await this.evaluation.click();
     }
-    async goToQuestionSet (){
+    async goToQuestionSet() {
         await this.questionSet.click();
     }
-    async goToAssessment (){
+    async goToAssessment() {
         await this.assessment.click();
     }
 
-    async goTo(){
+    async goTo() {
         await this.page.goto('https://app.easy.jobs/company/question/group/?name=&sort_by=updated&order_by=DESC');
         await this.page.waitForLoadState('networkidle');
     }
 }
 
-class TopMenu{
-    constructor(page){
+class TopMenu {
+    constructor(page) {
         this.page = page;
-        this.toogleButton= page.locator(".toggler-button");
-        this.viewCompanyPage= page.locator(".header-content-left");
-        this.languageControl= page.locator(".language-control");
-        this.messages= page.locator(".header__conversation");
-        this.notification= page.locator(".dropdown.notification-list");
-        this.profile= page.locator(".profile-control");
-        this.companyLogo= page.locator(".company-logo");
-        this.companyName= page.locator("company-name");
-        this.userName= page.locator(".user-name");
+        this.toogleButton = page.locator(".toggler-button");
+        this.viewCompanyPage = page.locator(".header-content-left");
+        this.languageControl = page.locator(".language-control");
+        this.messages = page.locator(".header__conversation");
+        this.notification = page.locator(".dropdown.notification-list");
+        this.profile = page.locator(".profile-control");
+        this.companyLogo = page.locator(".company-logo");
+        this.companyName = page.locator("company-name");
+        this.userName = page.locator(".user-name");
     }
 
-    async clickOnToogleButton (){
+    async clickOnToogleButton() {
         await this.togglle.click();
     }
-    async goToCompanyPage (){
+    async goToCompanyPage() {
         await this.viewCompanyPage.click();
     }
-    async selectLanguage (){
+    async selectLanguage() {
         await this.languageControl.click();
     }
-    async goToMessage (){
+    async goToMessage() {
         await this.messages.click();
     }
-    async clickNotification (){
+    async clickNotification() {
         await this.notification.click();
     }
-    async clickProfile (){
+    async clickProfile() {
         await this.profile.click();
     }
-    async getCompanyLogo (){
+    async getCompanyLogo() {
         await this.companyLogo;
     }
-    async getCompanyName (){
+    async getCompanyName() {
         await this.companyName;
     }
-    async getUsername (){
+    async getUsername() {
         await this.userName;
     }
 }
 
-module.exports = {LeftMenu, TopMenu};
+module.exports = { LeftMenu, TopMenu };
