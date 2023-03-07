@@ -42,6 +42,13 @@ export const  companies = () =>  {
             basicInfo : {
                 title : '[yourcompanyname]',
             },
+            users: {
+                owner: {
+                    name: '[ownername]',
+                    email: '[owneremail]',
+                    role: 'Administrator'
+                }
+            }
         }
     }
 
