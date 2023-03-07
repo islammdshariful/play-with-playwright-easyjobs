@@ -152,12 +152,11 @@ class CandidateProfile{
         this.menu = new LeftMenu(page)
     }
 
-    async sendMessage(){
+    async sendMessage(message){
         await this.conversationTab.click();
         await this.chatTypeMessage.click();
-        await this.chatTypeMessage.fill("Hello there, are you ready for your interview?");
+        await this.chatTypeMessage.fill(message);
         await this.chatSendButton.click();
-        await this.page.pause();
     }
 
     async viewCandidateInfo(candidate, jobTitle, dateOfApplication=null){
