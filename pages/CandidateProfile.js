@@ -80,6 +80,13 @@ class CandidateProfile{
 
         this.noteSaveButton = page.locator('.button.semi-button-info')
 
+        this.noteEraseButton = page.locator('.erase-button');
+
+        this.noteCreator = page.locator('.note-creator');
+
+        this.noteTime = page.locator('.note-time');
+
+        this.noteText = page.locator('.label__full--eraseble');
         // Application Tab
         this.appllicationTab = page.locator("//div[@class='tab__card tab__card--primary gutter-10']/a[1]")
             // Cover letter
@@ -244,5 +251,15 @@ class CandidateProfile{
         }
     }
 
+    async addNote(creatorName){
+        const note = 'This is a sample note.'
+        await this.noteField.click();
+        await this.noteField.fill(note)
+        await this.noteSaveButton.click();
+        await this.toastMessage.hasText('Note added')
+        await expect.soft((this.noteCreator).nth(0)).toHaveText(creatorName);
+        await expect.soft((this.noteText).nth(0)).toHaveText(note);
+        await expect.soft((this.noteTime).nth(0)).toHaveText('1 second ago');
+    }
 }
 module.exports = {CandidateProfile};

@@ -171,3 +171,15 @@ test('Send candidate a message', async () => {
     // Reading email
     await readMails(subject, from, expectedMessage)
 })
+
+test.only('Add a note', async () => {
+    // Initialize candidate, admin and company data
+    const userAdmin = companyData.company.one.users.owner
+    // Navigating to Cadidate Page
+    const candidatePage = pomanager.getCandidatePage();
+    const candidateProfilePage = pomanager.getCandidateProfilePage();
+    // Selects a Candidate Page
+    await candidatePage.goToCandidateProfile();
+    // Add a note
+    await candidateProfilePage.addNote(userAdmin.name);
+})
