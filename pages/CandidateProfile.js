@@ -68,9 +68,9 @@ class CandidateProfile{
 
         this.currentSalary = page.locator('//li[@class="label__full  label__full--primary list-item--primary"]/p[2]').nth(2)
 
-        this.currentSalaryLabel = page.locator('//li[@class="label__full  label__full--primary list-item--primary"]/p[1]').nth(3)
+        this.expectedSalaryLabel = page.locator('//li[@class="label__full  label__full--primary list-item--primary"]/p[1]').nth(3)
 
-        this.currentSalary = page.locator('//li[@class="label__full  label__full--primary list-item--primary"]/p[2]').nth(3)
+        this.expectedSalary = page.locator('//li[@class="label__full  label__full--primary list-item--primary"]/p[2]').nth(3)
 
         this.noteField = page.locator('[placeholder="Add a note here"]')
 
@@ -167,11 +167,11 @@ class CandidateProfile{
     }
 
     async viewCandidateInfo(candidate, jobTitle, dateOfApplication=null){
-        let { credentials, basicInfo, social } = candidate
+        let { credentials, basicInfo, social, salary } = candidate
         await expect.soft(this.fullName).toHaveText(`${basicInfo.firstName} ${basicInfo.lastName}`);
         await expect.soft(this.jobApplied).toHaveText(jobTitle);
         
-        // First Name
+        // Left Panel
         await expect.soft(this.firstName).toHaveText(basicInfo.firstName)
         await expect.soft(this.lastName).toHaveText(basicInfo.lastName)
         await expect.soft(this.email).toHaveText(credentials.email)
@@ -192,6 +192,10 @@ class CandidateProfile{
         const newPage1 = await newTab1;
         await expect.soft(newPage1).toHaveURL(social.linkedin)
         newPage1.close()
+
+        // Right Panel
+        // await expect.soft(this.currentSalary).toHaveText(salary.currentSalary)
+        await expect.soft(this.expectedSalary).toHaveText(salary.expectedSalary)
     }
 
     async viewCoverLetter(candidate){
@@ -219,7 +223,6 @@ class CandidateProfile{
 
     async viewEducation(candidate){
         let { education } = candidate
-        console.log(education)
         for( var i = 0 ; i < education.length; i++){
             var degree = education[i].degree
             var level = education[i].level

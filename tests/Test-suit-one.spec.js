@@ -172,7 +172,7 @@ test('Send candidate a message', async () => {
     await readMails(subject, from, expectedMessage)
 })
 
-test.only('Add a note', async () => {
+test('Add a note', async () => {
     // Initialize candidate, admin and company data
     const userAdmin = companyData.company.one.users.owner
     // Navigating to Cadidate Page

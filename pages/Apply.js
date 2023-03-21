@@ -297,9 +297,9 @@ class Apply {
     }
 
     async addOthers(candidate) {
-        let { social } = candidate
+        let { social, salary } = candidate
 
-        await this.expectedSalary.fill(candidate.expectedSalary);
+        await this.expectedSalary.fill(salary.expectedSalary);
 
         await this.linkedinProfile.fill(social.linkedin);
 
@@ -430,12 +430,12 @@ class Apply {
     }
 
     async previewOther(candidate) {
-        let { expectedSalary, social } = candidate
+        let { expectedSalary, social, salary } = candidate
 
         await expect.soft(this.previewOtherTitle).toHaveText("Other")
 
         await expect.soft(this.previewExpectedSalaryLabel).toHaveText("Expected Salary*")
-        await expect.soft(this.previewExpectedSalary).toHaveText(expectedSalary)
+        await expect.soft(this.previewExpectedSalary).toHaveText(salary.expectedSalary)
 
         await expect.soft(this.previewLinkedInLabel).toHaveText("Linkedin Profile Link")
         await expect.soft(this.previewLinkedIn).toHaveText(social.linkedin)
