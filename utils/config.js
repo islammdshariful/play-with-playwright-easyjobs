@@ -1,1 +1,0 @@
-export const url = 'https://app.easy.jobs'

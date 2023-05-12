@@ -3,7 +3,7 @@ class LeftMenu {
         this.page = page;
         this.dashboard = page.locator("text=Dashboard");
         this.jobs = page.locator("text=Jobs").nth(0);
-        this.candidates = page.locator("text=Candidates");
+        this.candidates = page.locator("text=Candidates").nth(0);
         this.messages = page.locator("text=Messages");
         this.settings = page.locator("text=Settings");
         this.evaluation = page.locator("text=Evaluation");
