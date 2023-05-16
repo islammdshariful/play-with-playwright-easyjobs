@@ -1,6 +1,3 @@
-const { url } = require("../utils/config");
-
-
 class LoginPage{
     constructor(page){
         this.page = page;
@@ -12,7 +9,7 @@ class LoginPage{
     }
 
     async goTo(){
-        await this.page.goto(`${url}/login`);
+        await this.page.goto(`/login`);
         await this.page.waitForLoadState('networkidle');
     }
 

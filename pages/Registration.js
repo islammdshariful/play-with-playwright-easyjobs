@@ -1,5 +1,4 @@
 const { expect } = require("../playwright.config");
-const { url } = require("../utils/config");
 
 class Registration{
     constructor(page){
@@ -14,7 +13,7 @@ class Registration{
     }
 
     async goTo(){
-        await this.page.goto(`${url}/registration`);
+        await this.page.goto(`/registration`);
     }
 
     async goToSigninPage(){

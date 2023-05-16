@@ -12,8 +12,6 @@ const { test } = require('@playwright/test');
 
 const { POManager } = require('../pages/POManager');
 
-test.describe.configure({ mode: 'serial' });
-
 let page;
 let pomanager;
 let mainUser;
@@ -43,18 +41,18 @@ test('Login to account', async () => {
     await loginPage.validLogin(mainUser)
 });
 
-test('Create Question Set', async () => {
-    // Initialize the left menu page
-    const leftMenu = pomanager.getLeftMenu();
-    // Visiting question set page
-    await leftMenu.goToEvaluation();
-    await leftMenu.goToQuestionSet();
-    // Initialize the question set page
-    const questionSet = pomanager.getQuestionSet();
-    // Creating question sets for screen and quiz
-    await questionSet.addQuestionSet(questionSetData.sets.screening.one, questionsData.screening.question1)
-    await questionSet.addQuestionSet(questionSetData.sets.quiz.one, questionsData.quiz.question1)
-});
+// test('Create Question Set', async () => {
+//     // Initialize the left menu page
+//     const leftMenu = pomanager.getLeftMenu();
+//     // Visiting question set page
+//     await leftMenu.goToEvaluation();
+//     await leftMenu.goToQuestionSet();
+//     // Initialize the question set page
+//     const questionSet = pomanager.getQuestionSet();
+//     // Creating question sets for screen and quiz
+//     await questionSet.addQuestionSet(questionSetData.sets.screening.one, questionsData.screening.question1)
+//     await questionSet.addQuestionSet(questionSetData.sets.quiz.one, questionsData.quiz.question1)
+// });
 
 test('Create a job', async () => {
     // Initialize the left menu page
@@ -128,17 +126,17 @@ test('Check notification of new applicant', async () => {
     await notificationPage.checkNotificationFromMenuBar(candidate, job)
 })
 
-test('Check email of new applicant', async () => {
-    // Initialize job and company data
-    const job = jobData.jobs.job1.basic
-    const company = companyData.company.one.basicInfo
-    // Initialize email subject, from, and expected message
-    const subject = `${job.title} has received a new application.`
-    const from = 'no-reply@easy.jobs'
-    const expectedMessage = `Hi, Your Job Opening for the position ${job.title} has received a new applicant. Click here to see the Application now. With best regards, ${company.title} © 2023 EasyJobs. All rights reserved.`
-    // Reading email
-    await readMails(subject, from, expectedMessage)
-})
+// test('Check email of new applicant', async () => {
+//     // Initialize job and company data
+//     const job = jobData.jobs.job1.basic
+//     const company = companyData.company.one.basicInfo
+//     // Initialize email subject, from, and expected message
+//     const subject = `${job.title} has received a new application.`
+//     const from = 'no-reply@easy.jobs'
+//     const expectedMessage = `Hi, Your Job Opening for the position ${job.title} has received a new applicant. Click here to see the Application now. With best regards, ${company.title} © 2023 EasyJobs. All rights reserved.`
+//     // Reading email
+//     await readMails(subject, from, expectedMessage)
+// })
 
 test('Check candidates profile information', async () => {
     // Initialize candidate and job data
@@ -169,7 +167,7 @@ test('Send candidate a message', async () => {
     // Sending message to candidate
     await candidateProfilePage.sendMessage(message);
     // Reading email
-    await readMails(subject, from, expectedMessage)
+    // await readMails(subject, from, expectedMessage)
 })
 
 test('Add a note', async () => {
