@@ -13,6 +13,7 @@ _Note: This project is currently ongoing, and plan to add more test cases in the
 2. Install dependencies: `npm install`
 ```sh
 npm install
+npx install playwright
 ```
 3. To create credentials and a token for Gmail, please refer to the [documentation](https://www.npmjs.com/package/gmail-tester) for Gmail Tester. Once you have created these, place them in the following directories: `utils/mails/gmail-credentials.json` and `utils/mails/gmail-token.json`.
 4. Create a `credentials.js` file in `utils/credentials.js`.
