@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "onchrome": "npx playwright test --project=chromium"
+    "onchrome": "npx playwright test --project=chromium",
+    "ondev": "npx playwright test --project=development"
   },
   "keywords": [],
   "author": "",

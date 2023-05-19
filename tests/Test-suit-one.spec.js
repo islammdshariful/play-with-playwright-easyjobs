@@ -32,6 +32,7 @@ test.beforeAll(async ({ browser }) => {
     companyData = companies();
 });
 
+
 test('Login to account', async () => {
     // Initialize the login page
     const loginPage = pomanager.getLoginPage();
@@ -42,6 +43,7 @@ test('Login to account', async () => {
 });
 
 test('Create Question Set', async () => {
+    await page.goto('')
     // Initialize the left menu page
     const leftMenu = pomanager.getLeftMenu();
     // Visiting question set page

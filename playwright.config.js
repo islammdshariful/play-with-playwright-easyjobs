@@ -1,6 +1,6 @@
 // @ts-check
 const { devices } = require('@playwright/test');
-
+import path from 'path'
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -12,6 +12,9 @@ const { devices } = require('@playwright/test');
  * @see https://playwright.dev/docs/test-configuration
  * @type {import('@playwright/test').PlaywrightTestConfig}
  */
+// @ts-ignore
+export const STORAGE_STATE = path.join(__dirname, 'playwright/.auth/main_user.json')
+
 const config = {
   testDir: './tests',
   /* Maximum time one test can run for. */
@@ -54,10 +57,22 @@ const config = {
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
+      name: 'setup',
+      testMatch: 'Login.setup.js'
+    },
+    {
+      name: 'development',
+      dependencies: ['setup'],
       use: {
         ...devices['Desktop Chrome'],
         // viewport: null,
+        storageState: STORAGE_STATE
+      },
+    },
+    {
+      name: 'chromium',
+      use: {
+        ...devices['Desktop Chrome'],
       },
     },
 
