@@ -1,6 +1,6 @@
 //@ts-check
 import { users } from '../utils/credentials';
-import { LoginPage } from '../pages/Login';
+import { LoginPage } from '../src/Login';
 const { test } = require('@playwright/test');
 import { STORAGE_STATE } from '../playwright.config'
 

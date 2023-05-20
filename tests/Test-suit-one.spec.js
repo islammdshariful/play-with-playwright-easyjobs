@@ -1,5 +1,5 @@
 //@ts-check
-import { CompanyPage } from '../pages/CompanyPage';
+import { CompanyPage } from '../src/CompanyPage';
 import { questionsSets, questions } from '../utils/data/questions';
 import { newUser } from '../utils/data/faker';
 import { jobs } from '../utils/data/jobs';
@@ -7,10 +7,12 @@ import { users } from '../utils/credentials';
 import { candidates } from '../utils/data/candidates';
 import { readMails } from '../utils/mails/mail-helper';
 import { companies } from '../utils/data/company';
-import { LeftMenu } from '../pages/Menu';
+import { LeftMenu } from '../src/Menu';
+import { pipeline } from '../utils/data/pipeline';
+
 const { test } = require('@playwright/test');
 
-const { POManager } = require('../pages/POManager');
+const { POManager } = require('../src/POManager');
 
 let page;
 let pomanager;
@@ -20,6 +22,7 @@ let questionSetData;
 let questionsData;
 let candidatesData;
 let companyData;
+let candidatePipeline;
 
 test.beforeAll(async ({ browser }) => {
     page = await browser.newPage();
@@ -30,6 +33,7 @@ test.beforeAll(async ({ browser }) => {
     questionsData = questions();
     candidatesData = candidates();
     companyData = companies();
+    candidatePipeline = pipeline();
 });
 
 
@@ -43,7 +47,6 @@ test('Login to account', async () => {
 });
 
 test('Create Question Set', async () => {
-    await page.goto('')
     // Initialize the left menu page
     const leftMenu = pomanager.getLeftMenu();
     // Visiting question set page
@@ -141,6 +144,7 @@ test('Check notification of new applicant', async () => {
 // })
 
 test('Check candidates profile information', async () => {
+    await page.goto('')
     // Initialize candidate and job data
     const candidate = candidatesData.candidates.candidateOne
     let job = jobData.jobs.job1.basic.title
@@ -182,4 +186,13 @@ test('Add a note', async () => {
     await candidatePage.goToCandidateProfile();
     // Add a note
     await candidateProfilePage.addNote(userAdmin.name);
+})
+
+test('Change candidate pipeline', async () => {
+    // Navigating to Cadidate Page
+    const candidatePage = pomanager.getCandidatePage();
+    const candidateProfilePage = pomanager.getCandidateProfilePage();
+    // Selects a Candidate
+    await candidatePage.goToCandidateProfile();
+    await candidateProfilePage.changePipeline('selected', candidatePipeline) // accepts (pipline, pipelineData, noEmailSent)| value shortlist, applied, interview, selected, rejected
 })
