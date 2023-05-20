@@ -16,6 +16,7 @@ class Helper{
             const dates = await this.page.locator("[data-action='selectYear']")
 
             const count = await dates.count()
+            console.log(date.year)
             
             let flag = false
             for (let i = 0; i < count; ++i){
@@ -33,13 +34,19 @@ class Helper{
         }
         
         let chooseYear = await this.page.locator(`text='${date.year}'`).count();
+        console.log(chooseYear)
         if (chooseYear > 1){
-            await this.page.locator(`text='${date.year}'`).nth(1).click();
+            if (chooseYear > 2){
+                await this.page.locator(`text='${date.year}'`).nth(2).click();
+            }
+            else{
+                await this.page.locator(`text='${date.year}'`).nth(1).click();   
+            }
         }else {
             await this.page.locator(`text='${date.year}'`).nth(0).click(); 
         }
 
-        await this.page.locator(`text='${date.month}'`).click();
+        await this.page.locator(`text='${date.month}'`).nth(0).click();
 
         var chsdate = date.date.padStart(2, '0');        
         let chooseDate = await this.page.locator(`//td[contains(@class,'day')][contains(@data-day,'${chsdate}')]`, { timeout: 5000 }).count();

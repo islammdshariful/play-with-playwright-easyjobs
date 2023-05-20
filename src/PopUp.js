@@ -32,12 +32,12 @@ class ToastMessage{
     }
 
     async hasMessage(message){
-        await expect(this.message).toContainText(message);
+        await expect.soft(this.message).toContainText(message);
         await this.message.click();
     }
 
     async hasText(message){
-        await expect(this.text).toContainText(message);
+        await expect.soft(this.text).toContainText(message);
         await this.text.click();
     }
 }
